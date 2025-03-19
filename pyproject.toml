@@ -1,0 +1,102 @@
+[project]
+name = "ghc_notes"
+authors = [
+    {name = "Samuel Searles-Bryant", email = "sam@samueljsb.co.uk"},
+]
+description = "Manage notes of GHC"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [  # pragma: alphabetize
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dynamic = ["version"]
+
+requires-python = ">=3.10"
+dependencies = [
+]
+
+[dependency-groups]
+test = [  # pragma: alphabetize[case-insensitive]
+  "covdefaults",
+  "coverage",
+  "pytest",
+]
+mypy = [  # pragma: alphabetize[case-insensitive]
+  "mypy",
+  "nox",
+]
+
+[project.urls]
+Source = "https://github.com/samueljsb/ghc_notes"
+Changelog = "https://github.com/samueljsb/ghc_notes/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["ghc_notes"]
+
+# Mypy
+# ====
+
+[tool.mypy]
+files = "."
+exclude = [
+  "build/",
+  "venv",
+]
+
+pretty = true
+
+# Use strict defaults
+enable_error_code = [  # pragma: alphabetize
+  "ignore-without-code",
+  "possibly-undefined",
+  "truthy-bool",
+  "truthy-iterable",
+]
+strict = true
+warn_unreachable = true
+warn_no_return = true
+
+# Ruff
+# ====
+
+[tool.ruff]
+line-length = 79
+
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [  # pragma: alphabetize
+  "COM812", "ISC001",  # conflicts with formatter
+  "D",  # docstring linting is annoying
+  "ISC003",  # bad advice -- requires implicit string concatenation
+  "PTH",  #  this package does not use pathlib
+  "Q000", "Q003",  # conflicts with quote-style = "single"
+  "TC003",  # do not require imports in TYPE_CHECKING block
+]
+
+task-tags = [
+  "pragma",
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.lint.per-file-ignores]
+"*_test.py" = [  # pragma: alphabetize
+  "PLR2004",  # allow comparison to values
+  "S101",  # allow `assert`
+]
+
+[tool.ruff.format]
+quote-style = "single"
