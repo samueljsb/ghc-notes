@@ -14,11 +14,10 @@ classifiers = [  # pragma: alphabetize
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.9",
 ]
 dynamic = ["version"]
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
 ]
 
@@ -73,7 +72,7 @@ warn_no_return = true
 [tool.ruff]
 line-length = 79
 
-target-version = "py39"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = ["ALL"]
