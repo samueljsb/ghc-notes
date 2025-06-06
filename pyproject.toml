@@ -20,6 +20,7 @@ dynamic = ["version"]
 requires-python = ">=3.10"
 dependencies = [
   "attrs",
+  "typing_extensions",
 ]
 
 [dependency-groups]
@@ -32,6 +33,9 @@ mypy = [  # pragma: alphabetize[case-insensitive]
   "mypy",
   "nox",
 ]
+
+[project.scripts]
+ghc-notes = "ghc_notes.cli:__main__"
 
 [project.urls]
 Source = "https://github.com/samueljsb/ghc_notes"
@@ -81,6 +85,7 @@ ignore = [  # pragma: alphabetize
   "COM812", "ISC001",  # conflicts with formatter
   "D",  # docstring linting is annoying
   "ISC003",  # bad advice -- requires implicit string concatenation
+  "N818",  # bad advice -- requires Smurf-naming for Exceptions
   "PTH",  #  this package does not use pathlib
   "Q000", "Q003",  # conflicts with quote-style = "single"
   "TC003",  # do not require imports in TYPE_CHECKING block
@@ -94,6 +99,9 @@ task-tags = [
 force-single-line = true
 
 [tool.ruff.lint.per-file-ignores]
+"ghc_notes/cli/*.py" = [
+  "T201",  # allow printing in the CLI
+]
 "*_test.py" = [  # pragma: alphabetize
   "PLR2004",  # allow comparison to values
   "S101",  # allow `assert`
